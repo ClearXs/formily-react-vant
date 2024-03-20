@@ -1,0 +1,43 @@
+{
+  "name": "@formily/vant-react-settings-form",
+  "version": "0.0.1-beta.0",
+  "license": "MIT",
+  "main": "lib",
+  "types": "lib/index.d.ts",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "module": "esm",
+  "umd:main": "dist/formily.vant-react-settings-form.umd.production.js",
+  "unpkg": "dist/formily.vant-react-settings-form.umd.production.js",
+  "jsdelivr": "dist/formily.vant-react-settings-form.umd.production.js",
+  "jsnext:main": "esm",
+  "sideEffects": [
+    "dist/*",
+    "esm/*.js",
+    "lib/*.js",
+    "src/*.ts",
+    "*.less",
+    "*.scss",
+    "**/*/style.js"
+  ],
+  "scripts": {
+    "build": "formily-tpl build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClearXs/formily-vant-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ClearXs/formily-vant-react/issues"
+  },
+  "homepage": "https://github.com/ClearXs/formily-vant-react#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0 || >=17.0.0",
+    "react-dom": ">=16.8.0",
+    "react-is": ">=16.8.0 || >=17.0.0"
+  }
+}

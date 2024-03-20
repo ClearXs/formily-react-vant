@@ -1,0 +1,60 @@
+{
+  "name": "@formily/vant-react",
+  "version": "0.0.1-beta.0",
+  "license": "MIT",
+  "main": "lib",
+  "types": "lib/index.d.ts",
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "module": "esm",
+  "umd:main": "dist/formily.vant-react.umd.production.js",
+  "unpkg": "dist/formily.vant-react.umd.production.js",
+  "jsdelivr": "dist/formily.vant-react.umd.production.js",
+  "jsnext:main": "esm",
+  "sideEffects": [
+    "dist/*",
+    "esm/*.js",
+    "lib/*.js",
+    "src/*.ts",
+    "*.less",
+    "*.scss",
+    "**/*/style.js"
+  ],
+  "scripts": {
+    "start": "dumi dev",
+    "build": "formily-tpl build",
+    "build:docs": "dumi build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ClearXs/formily-vant-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ClearXs/formily-vant-react/issues"
+  },
+  "homepage": "https://github.com/ClearXs/formily-vant-react#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vant-react": "^5.24.2",
+    "vant-react-icons": "^0.2.2",
+    "react": ">=16.8.0 || >=17.0.0",
+    "react-dom": ">=16.8.0",
+    "react-is": ">=16.8.0 || >=17.0.0"
+  },
+  "dependencies": {
+    "@formily/core": "^2.2.10",
+    "@formily/grid": "^2.2.10",
+    "@formily/react": "^2.2.10",
+    "classnames": "^2.2.6",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "react-sortable-hoc": "^2.0.0",
+    "react-sticky-box": "^0.9.3"
+  },
+  "devDependencies": {
+    "dumi-theme-mobile": "^1.1.16"
+  }
+}
