@@ -1,34 +1,32 @@
-import React, { ReactNode, useEffect, useRef, useState } from 'react'
-import { CascadePickerProps as AntCascadePickerProps } from 'antd-mobile/es/components/cascade-picker'
-import { VirtualInputRef } from 'antd-mobile/es/components/virtual-input'
+import React, { ReactNode, useEffect, useRef, useState } from "react";
+import { connect, mapProps, mapReadPretty } from "@formily/react";
+import { usePrefixCls, usePropsValue } from "../__builtins__";
+import cls from "classnames";
+import PreviewText from "../preview-text";
+import { Close } from "@react-vant/icons";
+import { Input, Picker, PickerProps } from "react-vant";
 import {
-  PickerColumnItem,
-  PickerValue,
+  PickerColumnOption,
+  PickerColumnProps,
   PickerValueExtend,
-} from 'antd-mobile/es/components/picker'
-import { CascadePicker as AntCascadePicker, VirtualInput } from 'antd-mobile'
-import { connect, mapProps, mapReadPretty } from '@formily/react'
-import { usePrefixCls, usePropsValue } from '../__builtins__'
-import cls from 'classnames'
-import { CloseCircleFill } from 'antd-mobile-icons'
-import PreviewText from '../preview-text'
+} from "react-vant/es/picker/PropsType";
 
-export interface ICascadePickerProps extends AntCascadePickerProps {
-  className?: string
-  style?: React.CSSProperties
-  placeholder?: string
-  onChange?: (value: PickerValue[], extend: PickerValueExtend) => void
-  clearable?: boolean
+export interface ICascadePickerProps extends PickerProps {
+  className?: string;
+  style?: React.CSSProperties;
+  placeholder?: string;
+  onChange?: (value: PickerColumnOption[], extend: PickerValueExtend) => void;
+  clearable?: boolean;
   displayRender?: (
     label: ReactNode[],
-    selectedOptions: (PickerColumnItem | null)[]
-  ) => string
+    selectedOptions: (PickerColumnProps | null)[]
+  ) => string;
 }
 
 const defaultDisplayRender = (
   label: ReactNode[]
   // selectedOptions: (PickerColumnItem | null)[]
-) => label?.join(' / ')
+) => label?.join(" / ");
 
 export const BasePicker: React.FC<ICascadePickerProps> = ({
   placeholder,
@@ -40,24 +38,24 @@ export const BasePicker: React.FC<ICascadePickerProps> = ({
   style,
   ...props
 }) => {
-  const prefix = usePrefixCls('formily-cascade-picker')
-  const inputRef = useRef<VirtualInputRef>()
-  const labelItems = useRef<PickerColumnItem[]>([])
-  const [visible, setVisible] = useState(false)
-  const [label, setLabel] = useState<string | undefined>()
+  const prefix = usePrefixCls("formily-cascade-picker");
+  const inputRef = useRef<any>();
+  const labelItems = useRef<PickerColumnProps[]>([]);
+  const [visible, setVisible] = useState(false);
+  const [label, setLabel] = useState<string | undefined>();
   const [value, onChange] = usePropsValue({
     defaultValue: propValue,
     onChange: propOnChange,
-  })
+  });
 
   useEffect(() => {
     setLabel(
       displayRender(
-        labelItems.current.map((item) => item.label),
+        labelItems.current.map((item) => item.value),
         labelItems.current
       )
-    )
-  }, [labelItems.current])
+    );
+  }, [labelItems.current]);
 
   const renderPicker = () => {
     const pickerProps = {
@@ -66,51 +64,51 @@ export const BasePicker: React.FC<ICascadePickerProps> = ({
       visible,
       value,
       onClose: () => {
-        setVisible(false)
-        inputRef.current.focus()
+        setVisible(false);
+        inputRef.current.focus();
       },
       onConfirm: onChange,
       children: (items) => {
-        labelItems.current = items
-        return null
+        labelItems.current = items;
+        return null;
       },
-    }
-    return <AntCascadePicker {...pickerProps} />
-  }
+    };
+    return <Picker {...pickerProps} />;
+  };
 
   return (
     <div className={cls(prefix, className)}>
-      <VirtualInput
+      <Input
         placeholder={placeholder}
         value={label}
         ref={inputRef}
-        style={{ '--caret-width': '1px', '--caret-color': '#666666', ...style }}
+        style={{ "--caret-width": "1px", "--caret-color": "#666666", ...style }}
         onClick={() => {
-          setVisible(true)
+          setVisible(true);
         }}
       />
       {clearable && value && value.length > 0 && (
         <div
           className={`${prefix}-clear`}
           onClick={() => {
-            onChange?.([], { items: [], columns: [] })
-            labelItems.current = []
+            onChange?.([], { items: [], columns: [] });
+            labelItems.current = [];
           }}
         >
-          <CloseCircleFill />
+          <Close />
         </div>
       )}
       {renderPicker()}
     </div>
-  )
-}
+  );
+};
 
 export const CascadePicker = connect(
   BasePicker,
   mapProps({
-    dataSource: 'options',
+    dataSource: "columns",
   }),
   mapReadPretty(PreviewText.Cascader)
-)
+);
 
-export default CascadePicker
+export default CascadePicker;

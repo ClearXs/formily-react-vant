@@ -2,8 +2,8 @@ import {
   PayCircleOutline,
   SetOutline,
   UnorderedListOutline,
-} from 'antd-mobile-icons'
-import React from 'react'
+} from "react-vant-icons";
+import React from "react";
 // @ts-ignore
 import {
   List,
@@ -11,16 +11,16 @@ import {
   FormItem,
   FormButtonGroup,
   Submit,
-} from '@formily/antd-mobile'
-import { Dialog, Image } from 'antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
+} from "@formily/react-vant";
+import { Dialog, Image } from "react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField } from "@formily/react";
 
 const icons = {
   bill: <UnorderedListOutline />,
   assets: <PayCircleOutline />,
   setting: <SetOutline />,
-}
+};
 const SchemaField = createSchemaField({
   scope: { icons },
   components: {
@@ -28,22 +28,22 @@ const SchemaField = createSchemaField({
     FormItem,
     Image,
   },
-})
+});
 
-const form = createForm()
+const form = createForm();
 
 const listData = [
-  { icon: 'bill', title: '账单' },
-  { icon: 'assets', title: '总资产' },
-  { icon: 'setting', title: '设置' },
-]
+  { icon: "bill", title: "账单" },
+  { icon: "assets", title: "总资产" },
+  { icon: "setting", title: "设置" },
+];
 
 export default () => {
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -54,13 +54,13 @@ export default () => {
               x-component="List.Item"
               x-component-props={{
                 clickable: true,
-                children: '{{$record.title}}',
+                children: "{{$record.title}}",
               }}
             >
               <SchemaField.Void x-component="List.ItemPrefix">
                 <SchemaField.Void
                   type="string"
-                  x-content={'{{icons[$record.icon]}}'}
+                  x-content={"{{icons[$record.icon]}}"}
                 />
               </SchemaField.Void>
             </SchemaField.Object>
@@ -71,5 +71,5 @@ export default () => {
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};

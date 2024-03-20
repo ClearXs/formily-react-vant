@@ -1,1 +1,1 @@
-import 'antd-mobile/es/components/selector/selector.css'
+import "react-vant/es/selector/style/index.css";

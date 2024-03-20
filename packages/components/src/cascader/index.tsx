@@ -1,13 +1,13 @@
-import { connect, mapProps, mapReadPretty } from '@formily/react'
-import { Cascader as AntCascader } from 'antd-mobile'
-import PreviewText from '../preview-text'
+import { connect, mapProps, mapReadPretty } from "@formily/react";
+import { Cascader as VantCascader } from "react-vant";
+import PreviewText from "../preview-text";
 
 export const Cascader = connect(
-  AntCascader,
+  VantCascader,
   mapProps({
-    dataSource: 'options',
+    dataSource: "columns",
   }),
   mapReadPretty(PreviewText.Cascader)
-)
+);
 
-export default Cascader
+export default Cascader;

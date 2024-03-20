@@ -1,9 +1,9 @@
-import React from 'react'
-import { List } from '@formily/antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider } from '@formily/react'
+import React from "react";
+import { List } from "@formily/react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider } from "@formily/react";
 
-const form = createForm()
+const form = createForm();
 
 export default () => (
   <FormProvider form={form}>
@@ -25,4 +25,4 @@ export default () => (
       </List.Item>
     </List>
   </FormProvider>
-)
+);

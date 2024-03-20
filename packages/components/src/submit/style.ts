@@ -1,1 +1,1 @@
-import 'antd-mobile/es/components/button/button.css'
+import "react-vant/es/button/style/index.css";

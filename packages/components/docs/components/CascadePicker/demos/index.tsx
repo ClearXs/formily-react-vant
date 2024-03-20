@@ -1,24 +1,17 @@
-import React from 'react'
-import JsonSchema from './json-schema'
-import MarkupSchema from './markup-schema'
-import JSX from './jsx'
-import { List } from 'antd-mobile'
+import React from "react";
+import JsonSchema from "./json-schema";
+import MarkupSchema from "./markup-schema";
+import JSX from "./jsx";
 
 function Index(props) {
   return (
     <>
-      <List header="Markup Schema 模式">
-        <MarkupSchema />
-      </List>
+      <MarkupSchema />
 
-      <List header="JSON Schema 模式">
-        <JsonSchema />
-      </List>
-      <List header="JSX 模式">
-        <JSX />
-      </List>
+      <JsonSchema />
+      <JSX />
     </>
-  )
+  );
 }
 
-export default Index
+export default Index;

@@ -1,3 +1,2 @@
-import 'antd-mobile/es/components/list/list.css'
-import 'antd-mobile/es/components/popover/popover.css'
-import './style.less'
+import "react-vant/es/popover/style/index.css";
+import "./style.less";

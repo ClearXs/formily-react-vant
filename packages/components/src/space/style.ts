@@ -1,1 +1,1 @@
-import 'antd-mobile/es/components/space/space.css'
+import "react-vant/es/space/style/index.css";

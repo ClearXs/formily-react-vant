@@ -1,8 +1,8 @@
-import React from 'react'
+import React from "react";
 // @ts-ignore
-import { FormItem, Input, FormGrid } from '@formily/antd-mobile'
-import { FormProvider, createSchemaField } from '@formily/react'
-import { createForm } from '@formily/core'
+import { FormItem, Input, FormGrid } from "@formily/react-vant";
+import { FormProvider, createSchemaField } from "@formily/react";
+import { createForm } from "@formily/core";
 
 const SchemaField = createSchemaField({
   components: {
@@ -10,9 +10,9 @@ const SchemaField = createSchemaField({
     Input,
     FormGrid,
   },
-})
+});
 
-const form = createForm()
+const form = createForm();
 
 export default () => {
   return (
@@ -29,7 +29,7 @@ export default () => {
             name="aaa"
             title="aaa"
             x-decorator="FormItem"
-            x-decorator-props={{gridSpan: 2}}
+            x-decorator-props={{ gridSpan: 2 }}
             x-component="Input"
           />
           <SchemaField.String
@@ -71,5 +71,5 @@ export default () => {
         </SchemaField.Void>
       </SchemaField>
     </FormProvider>
-  )
-}
+  );
+};

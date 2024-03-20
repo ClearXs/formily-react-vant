@@ -1,2 +1,2 @@
-import 'antd-mobile/es/components/list/list.css'
-import './style.less'
+import "react-vant/es/list/style/index.css";
+import "./style.less";

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // @ts-ignore
 import {
   CascadePicker,
@@ -6,11 +6,11 @@ import {
   FormItem,
   FormButtonGroup,
   Submit,
-} from '@formily/antd-mobile'
-import { Dialog, Slider } from 'antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
-import { options } from './data'
+} from "@formily/react-vant";
+import { Dialog, Slider } from "react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField } from "@formily/react";
+import { options } from "./data";
 
 const SchemaField = createSchemaField({
   components: {
@@ -19,41 +19,41 @@ const SchemaField = createSchemaField({
     CascadePicker,
     Slider,
   },
-})
+});
 
-const form = createForm()
+const form = createForm();
 const schema = {
-  type: 'object',
+  type: "object",
   properties: {
     layout: {
-      type: 'void',
-      'x-component': 'FormLayout',
-      'x-component-props': {
-        layout: 'vertical',
+      type: "void",
+      "x-component": "FormLayout",
+      "x-component-props": {
+        layout: "vertical",
       },
       properties: {
         name: {
-          type: 'items',
-          title: '城市',
+          type: "items",
+          title: "城市",
           enum: options,
-          'x-decorator': 'FormItem',
-          'x-component': 'CascadePicker',
-          'x-component-props': {
-            placeholder: '请选择',
+          "x-decorator": "FormItem",
+          "x-component": "CascadePicker",
+          "x-component-props": {
+            placeholder: "请选择",
           },
-          'x-validator': [{ required: true, message: '必须选择一项' }],
+          "x-validator": [{ required: true, message: "必须选择一项" }],
         },
       },
     },
   },
-}
+};
 
 export default () => {
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -62,5 +62,5 @@ export default () => {
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};

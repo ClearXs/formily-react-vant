@@ -1,15 +1,13 @@
-import React from 'react'
+import React from "react";
 import {
   Input,
   Stepper,
   NumberPicker,
   FormLayout,
   FormItem,
-  FormButtonGroup,
-  Submit,
-} from '@formily/antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
+} from "@formily/react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField } from "@formily/react";
 
 const SchemaField = createSchemaField({
   components: {
@@ -18,9 +16,9 @@ const SchemaField = createSchemaField({
     Stepper,
     NumberPicker,
   },
-})
+});
 
-const form = createForm()
+const form = createForm();
 
 export default () => (
   <FormProvider form={form}>
@@ -56,4 +54,4 @@ export default () => (
       </SchemaField>
     </FormLayout>
   </FormProvider>
-)
+);

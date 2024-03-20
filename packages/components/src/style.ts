@@ -1,7 +1,6 @@
 // auto generated code
 import './array-base/style.less'
 import './cascade-picker/style.less'
-import './check-list/style.less'
 import './checkbox/style.less'
 import './date-picker/style.less'
 import './form-button-group/style.less'

@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo } from "react";
 // @ts-ignore
 import {
   Reset,
@@ -7,28 +7,28 @@ import {
   FormItem,
   FormButtonGroup,
   Submit,
-} from '@formily/antd-mobile'
-import { Dialog } from 'antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
+} from "@formily/react-vant";
+import { Dialog } from "react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField } from "@formily/react";
 
 const SchemaField = createSchemaField({
   components: {
     Input,
     FormItem,
   },
-})
+});
 
 //有默认值的控件无法被清空
 
 export const Demo1 = () => {
-  const form = useMemo(() => createForm(), [])
+  const form = useMemo(() => createForm(), []);
 
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -56,19 +56,19 @@ export const Demo1 = () => {
         <Reset>重置</Reset>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};
 
 //强制清空重置
 
 export const Demo2 = () => {
-  const form = useMemo(() => createForm(), [])
+  const form = useMemo(() => createForm(), []);
 
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -96,19 +96,19 @@ export const Demo2 = () => {
         <Reset forceClear>重置</Reset>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};
 
 //重置并校验
 
 export const Demo3 = () => {
-  const form = useMemo(() => createForm(), [])
+  const form = useMemo(() => createForm(), []);
 
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -136,19 +136,19 @@ export const Demo3 = () => {
         <Reset validate>重置</Reset>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};
 
 //强制清空重置并校验
 
 export const Demo4 = () => {
-  const form = useMemo(() => createForm(), [])
+  const form = useMemo(() => createForm(), []);
 
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -178,5 +178,5 @@ export const Demo4 = () => {
         </Reset>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};

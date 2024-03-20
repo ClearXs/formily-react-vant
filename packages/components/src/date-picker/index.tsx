@@ -1,77 +1,78 @@
-import React, { useRef, useState } from 'react'
-import cls from 'classnames'
-import union from 'lodash/union'
-import moment from 'moment'
-import { connect, mapReadPretty } from '@formily/react'
-import { DatePicker as AntdDatePicker, VirtualInput } from 'antd-mobile'
-import { CloseCircleFill } from 'antd-mobile-icons'
-import { DatePickerProps as AntdDatePickerProps } from 'antd-mobile/es/components/date-picker'
+import React, { useRef, useState } from "react";
+import cls from "classnames";
+import union from "lodash/union";
+import moment from "moment";
+import { connect, mapReadPretty } from "@formily/react";
+import {
+  DateTimePickerProps,
+  Input,
+  DatetimePicker as VantDatePicker,
+} from "react-vant";
 
-import QuarterDatePicker from './quarter-picker'
-import { VirtualInputRef } from 'antd-mobile/es/components/virtual-input'
-import { formatMomentValue, momentable, usePrefixCls } from '../__builtins__'
-import { PreviewText } from '../preview-text'
+import { formatMomentValue, momentable, usePrefixCls } from "../__builtins__";
+import { PreviewText } from "../preview-text";
+import { Close } from "@react-vant/icons";
 
-type DateValue = string | Date | moment.Moment | moment.Moment[]
+type DateValue = string | Date | moment.Moment | moment.Moment[];
 
-type PickerMode = 'date' | 'week' | 'month' | 'quarter' | 'year'
+type PickerMode = "date" | "week" | "month" | "quarter" | "year";
 
 export type IDatePickerProps<PickerProps> = Exclude<
   PickerProps,
-  'value' | 'onChange'
+  "value" | "onChange"
 > & {
-  placeholder?: string
-  clearable?: boolean
-  picker?: PickerMode
+  placeholder?: string;
+  clearable?: boolean;
+  picker?: PickerMode;
   format?:
     | string
     | ((value: moment.Moment) => string)
-    | (string | ((value: moment.Moment) => string)[])
-  showTime?: boolean
-  value: DateValue
-  onChange: (value: DateValue) => void
-}
+    | (string | ((value: moment.Moment) => string)[]);
+  showTime?: boolean;
+  value: DateValue;
+  onChange: (value: DateValue) => void;
+};
 
-export type RangePickerProps = {}
+export type RangePickerProps = {};
 
-type ComposedDatePicker = React.FC<AntdDatePickerProps> & {
-  RangePicker?: React.FC<RangePickerProps>
-}
+type ComposedDatePicker = React.FC<DateTimePickerProps> & {
+  RangePicker?: React.FC<RangePickerProps>;
+};
 
 const mapDateFormat = function <T>() {
   const getDefaultFormat = (props: IDatePickerProps<T>) => {
-    const picker = props.picker
-    if (picker === 'month') {
-      return 'YYYY-MM'
-    } else if (picker === 'quarter') {
-      return 'YYYY-\\QQ'
-    } else if (picker === 'year') {
-      return 'YYYY'
-    } else if (picker === 'week') {
-      return 'gggg-wo'
+    const picker = props.picker;
+    if (picker === "month") {
+      return "YYYY-MM";
+    } else if (picker === "quarter") {
+      return "YYYY-\\QQ";
+    } else if (picker === "year") {
+      return "YYYY";
+    } else if (picker === "week") {
+      return "gggg-wo";
     }
-    return props['showTime'] ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
-  }
+    return props["showTime"] ? "YYYY-MM-DD HH:mm:ss" : "YYYY-MM-DD";
+  };
   return (props: any): IDatePickerProps<T> => {
-    const format = props['format'] || getDefaultFormat(props)
-    const onChange = props.onChange
+    const format = props["format"] || getDefaultFormat(props);
+    const onChange = props.onChange;
     return {
       ...props,
       format: format,
-      value: momentable(props.value, format === 'gggg-wo' ? 'gggg-ww' : format),
+      value: momentable(props.value, format === "gggg-wo" ? "gggg-ww" : format),
       onChange: (value: DateValue) => {
         if (onChange) {
-          onChange(formatMomentValue(value, format))
+          onChange(formatMomentValue(value, format));
         }
       },
-    } as IDatePickerProps<T>
-  }
-}
+    } as IDatePickerProps<T>;
+  };
+};
 
-export const BaseDatePicker: React.FC<IDatePickerProps<AntdDatePickerProps>> = (
+export const BaseDatePicker: React.FC<IDatePickerProps<DateTimePickerProps>> = (
   props
 ) => {
-  const prefix = usePrefixCls('formily-date-picker')
+  const prefix = usePrefixCls("formily-date-picker");
   const {
     onChange,
     placeholder,
@@ -80,20 +81,19 @@ export const BaseDatePicker: React.FC<IDatePickerProps<AntdDatePickerProps>> = (
     clearable,
     style,
     picker,
-    precision: _precision,
     ...dateProps
-  } = mapDateFormat<AntdDatePickerProps>()(props)
-  const inputRef = useRef<VirtualInputRef>()
-  const [visible, setVisible] = useState(false)
+  } = mapDateFormat<DateTimePickerProps>()(props);
+  const inputRef = useRef();
+  const [visible, setVisible] = useState(false);
 
   const onDateChange = (value: Date) => {
-    onChange?.(value)
-  }
+    onChange?.(value);
+  };
 
-  const val = formatMomentValue(value, format, '')
+  const val = formatMomentValue(value, format, "");
 
   const renderDatePicker = () => {
-    const precision = union([picker], [_precision])?.[0]
+    const precision = union([picker], [_precision])?.[0];
 
     const props = {
       ...dateProps,
@@ -102,42 +102,40 @@ export const BaseDatePicker: React.FC<IDatePickerProps<AntdDatePickerProps>> = (
       value: (value as moment.Moment)?.toDate(),
       getContainer: null,
       onClose: () => {
-        setVisible(false)
-        inputRef.current.focus()
+        setVisible(false);
+        inputRef.current.focus();
       },
       onConfirm: onDateChange,
-    }
-    const Picker =
-      precision?.indexOf('quarter') > -1 ? QuarterDatePicker : AntdDatePicker
+    };
 
-    return <Picker {...props} />
-  }
+    return <VantDatePicker {...props} />;
+  };
 
   return (
     <div className={cls(prefix)}>
-      <VirtualInput
+      <Input
         placeholder={placeholder}
-        value={Array.isArray(val) ? val.join('~') : val}
+        value={Array.isArray(val) ? val.join("~") : val}
         ref={inputRef}
-        style={{ '--caret-width': '1px', '--caret-color': '#666666', ...style }}
+        style={{ "--caret-width": "1px", "--caret-color": "#666666", ...style }}
         onClick={() => {
-          setVisible(true)
+          setVisible(true);
         }}
       />
       {clearable && value && (
-        <div className={`${prefix}-clear`} onClick={() => onChange?.('')}>
-          <CloseCircleFill />
+        <div className={`${prefix}-clear`} onClick={() => onChange?.("")}>
+          <Close />
         </div>
       )}
       {renderDatePicker()}
     </div>
-  )
-}
+  );
+};
 
 export const DatePicker: ComposedDatePicker = connect(
   BaseDatePicker,
   mapReadPretty(PreviewText.DatePicker)
-)
+);
 
 /*
  DatePicker.RangePicker = connect(
@@ -147,4 +145,4 @@ export const DatePicker: ComposedDatePicker = connect(
  )
  */
 
-export default DatePicker
+export default DatePicker;

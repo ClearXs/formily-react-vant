@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // @ts-ignore
 import {
   FormLayout,
@@ -7,11 +7,11 @@ import {
   CascadePicker,
   FormButtonGroup,
   Submit,
-} from '@formily/antd-mobile'
-import { Dialog } from 'antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
-import { options } from './data'
+} from "@formily/react-vant";
+import { Dialog } from "react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField } from "@formily/react";
+import { options } from "./data";
 
 const SchemaField = createSchemaField({
   components: {
@@ -19,16 +19,16 @@ const SchemaField = createSchemaField({
     FormItem,
     CascadePicker,
   },
-})
+});
 
-const form = createForm()
+const form = createForm();
 
 export default () => {
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -40,7 +40,7 @@ export default () => {
             x-decorator="FormItem"
             x-component="CascadePicker"
             x-component-props={{
-              placeholder: '请选择',
+              placeholder: "请选择",
               clearable: true,
             }}
             enum={options}
@@ -51,5 +51,5 @@ export default () => {
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};

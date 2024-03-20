@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 // @ts-ignore
 import {
   Input,
@@ -6,65 +6,65 @@ import {
   FormItem,
   FormButtonGroup,
   Submit,
-} from '@formily/antd-mobile'
-import { Dialog, Switch } from 'antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField, observer } from '@formily/react'
+} from "@formily/react-vant";
+import { Dialog, Switch } from "react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField, observer } from "@formily/react";
 
 const SchemaField = createSchemaField({
   components: {
     Input,
     FormItem,
   },
-})
+});
 
-const form = createForm()
+const form = createForm();
 const schema = {
-  type: 'object',
+  type: "object",
   properties: {
     name: {
-      type: 'string',
-      title: '姓名',
-      'x-decorator': 'FormItem',
-      'x-decorator-props': {
-        feedbackLayout: 'popover',
-        tooltip: '请输入真实姓名',
+      type: "string",
+      title: "姓名",
+      "x-decorator": "FormItem",
+      "x-decorator-props": {
+        feedbackLayout: "popover",
+        tooltip: "请输入真实姓名",
       },
-      'x-component': 'Input',
-      'x-component-props': {
-        placeholder: '请输入姓名',
+      "x-component": "Input",
+      "x-component-props": {
+        placeholder: "请输入姓名",
       },
-      'x-validator': [{ required: true, message: '姓名不能为空' }],
+      "x-validator": [{ required: true, message: "姓名不能为空" }],
     },
     address: {
-      type: 'string',
-      title: '地址',
-      'x-decorator': 'FormItem',
-      'x-component': 'Input.TextArea',
-      'x-component-props': {
-        placeholder: '请输入地址',
+      type: "string",
+      title: "地址",
+      "x-decorator": "FormItem",
+      "x-component": "Input.TextArea",
+      "x-component-props": {
+        placeholder: "请输入地址",
       },
     },
   },
-}
+};
 
 export default observer(() => {
-  const [checked, setChecked] = useState(true)
+  const [checked, setChecked] = useState(true);
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   const onChange = (checked) => {
-    setChecked(checked)
-    form.setPattern(checked ? 'editable' : 'readPretty')
-  }
+    setChecked(checked);
+    form.setPattern(checked ? "editable" : "readPretty");
+  };
 
   return (
     <FormProvider form={form}>
-      <FormButtonGroup justify={'start'} align={'center'}>
-        <label>表单编辑状态</label>{' '}
+      <FormButtonGroup justify={"start"} align={"center"}>
+        <label>表单编辑状态</label>{" "}
         <Switch checked={checked} onChange={onChange} />
       </FormButtonGroup>
       <FormLayout>
@@ -74,5 +74,5 @@ export default observer(() => {
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>
     </FormProvider>
-  )
-})
+  );
+});

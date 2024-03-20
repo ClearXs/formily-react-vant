@@ -1,24 +1,24 @@
-import React from 'react'
+import React from "react";
 // @ts-ignore
-import { FormGrid } from '@formily/antd-mobile'
+import { FormGrid } from "@formily/react-vant";
 
-const { GridColumn } = FormGrid
+const { GridColumn } = FormGrid;
 const Cell = ({ children }) => {
   return (
     <div
       style={{
-        backgroundColor: '#AAA',
-        color: '#FFF',
+        backgroundColor: "#AAA",
+        color: "#FFF",
         height: 30,
-        display: 'flex',
-        alignItems: 'center',
-        padding: '0 10px',
+        display: "flex",
+        alignItems: "center",
+        padding: "0 10px",
       }}
     >
       {children}
     </div>
-  )
-}
+  );
+};
 export default () => {
   return (
     <React.Fragment>
@@ -161,5 +161,5 @@ export default () => {
         </GridColumn>
       </FormGrid>
     </React.Fragment>
-  )
-}
+  );
+};

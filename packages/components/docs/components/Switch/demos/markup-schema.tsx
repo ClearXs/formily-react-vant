@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // @ts-ignore
 import {
   Switch,
@@ -6,26 +6,26 @@ import {
   FormItem,
   FormButtonGroup,
   Submit,
-} from '@formily/antd-mobile'
-import { Dialog } from 'antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
+} from "@formily/react-vant";
+import { Dialog } from "react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField } from "@formily/react";
 
 const SchemaField = createSchemaField({
   components: {
     Switch,
     FormItem,
   },
-})
+});
 
-const form = createForm()
+const form = createForm();
 
 export default () => {
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -43,5 +43,5 @@ export default () => {
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};

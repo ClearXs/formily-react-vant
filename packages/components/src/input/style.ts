@@ -1,1 +1,1 @@
-import 'antd-mobile/es/components/input/input.css'
+import "react-vant/es/input/style/index.css";

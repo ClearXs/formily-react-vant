@@ -1,1 +1,1 @@
-import 'antd-mobile/es/components/switch/switch.css'
+import "react-vant/es/switch/style/index.css";

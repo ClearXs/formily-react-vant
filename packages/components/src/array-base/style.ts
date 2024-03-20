@@ -1,2 +1,2 @@
-import 'antd-mobile/es/components/button/button.css'
-import './style.less'
+import "react-vant/es/button/style/index.css";
+import "./style.less";

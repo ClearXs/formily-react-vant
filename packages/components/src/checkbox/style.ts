@@ -1,2 +1,2 @@
-import 'antd-mobile/es/components/checkbox/checkbox.css'
-import './style.less'
+import "react-vant/es/checkbox/style/index.css";
+import "./style.less";

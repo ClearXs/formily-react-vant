@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 // @ts-ignore
 import {
   FormLayout,
@@ -7,10 +7,10 @@ import {
   Checkbox,
   FormButtonGroup,
   Submit,
-} from '@formily/antd-mobile'
-import { Dialog } from 'antd-mobile'
-import { createForm } from '@formily/core'
-import { FormProvider, createSchemaField } from '@formily/react'
+} from "@formily/react-vant";
+import { Dialog } from "react-vant";
+import { createForm } from "@formily/core";
+import { FormProvider, createSchemaField } from "@formily/react";
 
 const SchemaField = createSchemaField({
   components: {
@@ -18,36 +18,36 @@ const SchemaField = createSchemaField({
     FormItem,
     Checkbox,
   },
-})
+});
 
 const ItemList = [
   {
-    label: '选项一',
-    value: '1',
+    label: "选项一",
+    value: "1",
   },
   {
-    label: '选项二',
-    value: '2',
+    label: "选项二",
+    value: "2",
     disabled: true,
   },
   {
-    label: '选项三',
-    value: '3',
+    label: "选项三",
+    value: "3",
   },
   {
-    label: '选项四',
-    value: '4',
+    label: "选项四",
+    value: "4",
   },
-]
+];
 
-const form = createForm()
+const form = createForm();
 
 export default () => {
   const onSubmit = (values: any) => {
     Dialog.alert({
-      content: JSON.stringify(values),
-    })
-  }
+      message: JSON.stringify(values),
+    });
+  };
 
   return (
     <FormProvider form={form}>
@@ -69,9 +69,9 @@ export default () => {
             x-decorator="FormItem"
             x-component="Checkbox.Group"
             x-component-props={{
-              layout: 'horizontal',
+              layout: "horizontal",
             }}
-            default={['1', '4']}
+            default={["1", "4"]}
             enum={ItemList}
           />
           <SchemaField.Array
@@ -90,5 +90,5 @@ export default () => {
         <Submit onSubmit={onSubmit}>提交</Submit>
       </FormButtonGroup>
     </FormProvider>
-  )
-}
+  );
+};
