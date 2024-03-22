@@ -1,6 +1,6 @@
 {
-  "name": "@formily/vant-react",
-  "version": "0.0.1-beta.0",
+  "name": "@formily/react-vant",
+  "version": "0.0.4-beta.0",
   "license": "MIT",
   "main": "lib",
   "types": "lib/index.d.ts",
@@ -8,9 +8,9 @@
     "npm": ">=3.0.0"
   },
   "module": "esm",
-  "umd:main": "dist/formily.vant-react.umd.production.js",
-  "unpkg": "dist/formily.vant-react.umd.production.js",
-  "jsdelivr": "dist/formily.vant-react.umd.production.js",
+  "umd:main": "dist/formily.react-vant.umd.production.js",
+  "unpkg": "dist/formily.react-vant.umd.production.js",
+  "jsdelivr": "dist/formily.react-vant.umd.production.js",
   "jsnext:main": "esm",
   "sideEffects": [
     "dist/*",
@@ -28,21 +28,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ClearXs/formily-vant-react.git"
+    "url": "git+https://github.com/ClearXs/formily-react-vant.git"
   },
   "bugs": {
-    "url": "https://github.com/ClearXs/formily-vant-react/issues"
+    "url": "https://github.com/ClearXs/formily-react-vant/issues"
   },
-  "homepage": "https://github.com/ClearXs/formily-vant-react#readme",
+  "homepage": "https://github.com/ClearXs/formily-react-vant#readme",
   "publishConfig": {
     "access": "public"
   },
   "peerDependencies": {
-    "vant-react": "^5.24.2",
-    "vant-react-icons": "^0.2.2",
     "react": ">=16.8.0 || >=17.0.0",
     "react-dom": ">=16.8.0",
-    "react-is": ">=16.8.0 || >=17.0.0"
+    "react-is": ">=16.8.0 || >=17.0.0",
+    "react-vant": "^3.3.4",
+    "react-vant-icons": "^0.2.2"
   },
   "dependencies": {
     "@formily/core": "^2.2.10",
@@ -56,5 +56,6 @@
   },
   "devDependencies": {
     "dumi-theme-mobile": "^1.1.16"
-  }
+  },
+  "gitHead": "03d38aea31605bd55d77c68fe0c2b0e2afc27d88"
 }
