@@ -16,4 +16,3 @@ export * from "./list";
 export * from "./switch";
 export * from "./date-picker";
 export * from "./cascader";
-export * from "./cascade-picker";

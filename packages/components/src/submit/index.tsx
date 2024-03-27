@@ -16,7 +16,6 @@ export const Submit: React.FC<ISubmitProps> = observer(
     const form = useParentForm();
     return (
       <Button
-        type={onSubmit ? "button" : "submit"}
         color="primary"
         block={true}
         {...props}

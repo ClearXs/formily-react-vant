@@ -68,11 +68,7 @@ const Selector: React.FC<SelectorProps<any> & IPreviewTextProps> = observer(
       if (!selected.length) return placeholder;
       if (selected.length === 1) return getLabel(selected[0]);
       return selected.map((item, key) => {
-        return (
-          <Tag key={key} fill="outline">
-            {getLabel(item)}
-          </Tag>
-        );
+        return <Tag key={key}>{getLabel(item)}</Tag>;
       });
     };
     return (

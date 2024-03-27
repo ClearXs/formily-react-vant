@@ -13,8 +13,6 @@ import { formatMomentValue, momentable, usePrefixCls } from "../__builtins__";
 import { PreviewText } from "../preview-text";
 import { Close } from "@react-vant/icons";
 
-type DateValue = string | Date | moment.Moment | moment.Moment[];
-
 type PickerMode = "date" | "week" | "month" | "quarter" | "year";
 
 export type IDatePickerProps<PickerProps> = Exclude<
@@ -29,8 +27,8 @@ export type IDatePickerProps<PickerProps> = Exclude<
     | ((value: moment.Moment) => string)
     | (string | ((value: moment.Moment) => string)[]);
   showTime?: boolean;
-  value: DateValue;
-  onChange: (value: DateValue) => void;
+  value: string;
+  onChange: (value: string) => void;
 };
 
 export type RangePickerProps = {};
@@ -60,7 +58,7 @@ const mapDateFormat = function <T>() {
       ...props,
       format: format,
       value: momentable(props.value, format === "gggg-wo" ? "gggg-ww" : format),
-      onChange: (value: DateValue) => {
+      onChange: (value: string) => {
         if (onChange) {
           onChange(formatMomentValue(value, format));
         }
@@ -73,37 +71,25 @@ export const BaseDatePicker: React.FC<IDatePickerProps<DateTimePickerProps>> = (
   props
 ) => {
   const prefix = usePrefixCls("formily-date-picker");
-  const {
-    onChange,
-    placeholder,
-    value,
-    format,
-    clearable,
-    style,
-    picker,
-    ...dateProps
-  } = mapDateFormat<DateTimePickerProps>()(props);
+  const { onChange, placeholder, value, format, clearable, style, picker } =
+    mapDateFormat<DateTimePickerProps>()(props);
   const inputRef = useRef();
   const [visible, setVisible] = useState(false);
 
-  const onDateChange = (value: Date) => {
+  const onDateChange = (value: string) => {
     onChange?.(value);
   };
 
   const val = formatMomentValue(value, format, "");
 
   const renderDatePicker = () => {
-    const precision = union([picker], [_precision])?.[0];
+    const precision = union([picker])?.[0];
 
     const props = {
-      ...dateProps,
       precision,
       visible,
-      value: (value as moment.Moment)?.toDate(),
-      getContainer: null,
-      onClose: () => {
+      onCancel: () => {
         setVisible(false);
-        inputRef.current.focus();
       },
       onConfirm: onDateChange,
     };

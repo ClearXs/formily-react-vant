@@ -5,5 +5,5 @@
 ## Install
 
 ```bash
-npm install @formily/antd-mobile --save
+npm install @formily/react-vant --save
 ```

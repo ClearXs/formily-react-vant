@@ -28,7 +28,7 @@ export const InputNumber: React.FC<StepperProps> = connect(
   mapProps((props: INumberProps<any> & StepperProps) => {
     const onChange = props.onChange;
     const parser = props.parser;
-    const digits = isValid(props.digits) ? props.digits : props.precision;
+    const digits = isValid(props.step) ? props.step : props.precision;
     return {
       value: parser
         ? formatValue(parser(props?.value.toString()))

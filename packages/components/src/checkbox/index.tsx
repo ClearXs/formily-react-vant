@@ -91,10 +91,6 @@ export const BaseCheckbox: React.FC<ICheckboxProps> = ({
   );
 };
 
-BaseCheckbox.defaultProps = {
-  block: true,
-};
-
 export const CheckboxGroup: React.FC<ICheckboxGroupProps> = observer(
   ({ value, defaultValue, disabled, onChange, ...props }) => {
     return (

@@ -44,14 +44,12 @@ type ComposedList = React.FC<IListProps> &
   ArrayBaseMixins & {
     Item?: React.FC<IListItemProps>;
     ItemTitle?: React.FC<IListItemProps["title"]>;
-    ItemPrefix?: React.FC<IListItemProps["prefix"]>;
-    ItemDescription?: React.FC<IListItemProps["description"]>;
     ItemExtra?: React.FC<IListItemProps["extra"]>;
     ItemChildren?: React.FC<IListItemProps["children"]>;
   };
 
 export const List: ComposedList = observer(
-  ({ className, style, title, renderFooter, renderHeader, ...props }) => {
+  ({ title, renderFooter, renderHeader, ...props }) => {
     const field = useField<ArrayField>();
     const schema = useFieldSchema();
     const options = Array.isArray(field?.value) ? field?.value : [];
@@ -94,9 +92,11 @@ export const List: ComposedList = observer(
 
     return (
       <ArrayBase>
-        <div className={cls(prefixCls, className)} style={style}>
+        <div className={cls(prefixCls)}>
           {renderTitle()}
-          <VantList>{renderChildren()}</VantList>
+          <VantList onLoad={() => Promise.resolve()}>
+            {renderChildren()}
+          </VantList>
           {renderFooter && (
             <div className={`${prefixCls}-footer`}>{renderFooter}</div>
           )}
@@ -114,8 +114,6 @@ List.Item = observer((props) => {
   return (
     <Cell
       title={components?.get(listPropsMap.title)}
-      prefix={components?.get(listPropsMap.prefix)}
-      description={components?.get(listPropsMap.description)}
       extra={components?.get(listPropsMap.extra)}
       {...props}
     >
@@ -128,9 +126,7 @@ const baseItemComponent = () => {
   return null;
 };
 
-List.ItemPrefix = baseItemComponent;
 List.ItemTitle = baseItemComponent;
-List.ItemDescription = baseItemComponent;
 List.ItemChildren = baseItemComponent;
 List.ItemExtra = baseItemComponent;
 

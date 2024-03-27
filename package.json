@@ -16,7 +16,7 @@
     "clean": "lerna clean",
     "start:component": "yarn workspace @formily/vant-react start",
     "build:component:docs": "yarn workspace @formily/vant-react build && yarn workspace @formily/vant-react build:docs",
-    "build": "formily-tpl build",
+    "build": "rimraf -rf packages/*/{lib,esm} && lerna run build",
     "build:docs": "dumi build",
     "test": "jest --coverage",
     "test:prod": "jest --coverage --silent",
@@ -48,7 +48,6 @@
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.8.2",
     "@umijs/plugin-sass": "^1.1.1",
-    "moment": "^2.29.1",
     "dumi": "^1.1.42",
     "dumi-theme-mobile": "^1.1.22",
     "escape-string-regexp": "^4.0.0",
@@ -62,8 +61,10 @@
     "eslint-plugin-react": "^7.14.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "ghooks": "^2.0.4",
+    "jest": "^27.4.3",
     "lerna": "^4.0.0",
     "lint-staged": "^8.2.1",
+    "moment": "^2.29.1",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "react": "^17.0.1",
@@ -71,8 +72,10 @@
     "ts-import-plugin": "1.6.1",
     "ts-jest": "^27.1.0",
     "ts-node": "^9.1.1",
-    "typescript": "^4.1.5",
-    "jest": "^27.4.3"
+    "typescript": "^4.1.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@react-vant/icons": "^0.0.11",
+    "react-vant": "^3.3.4"
+  }
 }
